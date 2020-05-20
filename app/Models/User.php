@@ -3,13 +3,16 @@
 namespace App\Models;
 
 use App\Notifications\changeResetPassword;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Prettus\Repository\Contracts\Transformable;
+use Prettus\Repository\Traits\TransformableTrait;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
 /**
- * App\Models\User
+ * Class User.
  *
+ * @package namespace App\Models;
  * @property int $id
  * @property string $name
  * @property string $email
@@ -35,9 +38,11 @@ use Illuminate\Notifications\Notifiable;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereUpdatedAt($value)
  * @mixin \Eloquent
  */
-class User extends Authenticatable
+class User extends Authenticatable implements Transformable, JWTSubject
 {
+    use TransformableTrait;
     use Notifiable;
+
     const ROLE_ADMIN = 1;
     const ROLE_CLIENT = 2;
 
@@ -73,4 +78,19 @@ class User extends Authenticatable
         $this->notify(new changeResetPassword($token));
     }
 
+    public function getJWTIdentifier()
+    {
+        return $this->id;
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [
+            'user' => [
+                "id" => $this->id,
+                "name" => $this->name,
+                "email" => $this->email
+            ]
+        ];
+    }
 }

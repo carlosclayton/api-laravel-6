@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use Illuminate\Notifications\DatabaseNotification;
 
 class ResetPasswordController extends Controller
 {
@@ -27,4 +29,16 @@ class ResetPasswordController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
+
+    // Override showResetForm
+    public function showResetForm(Request $request, $token = null)
+    {
+
+        // Override showResetForm
+        $notification = DatabaseNotification::where('data', '"'. $request->route('token') . '"')->first();
+        $notification->markAsRead();
+        return view('auth.passwords.reset')->with(
+            ['token' => $token, 'email' => $request->email]
+        );
+    }
 }

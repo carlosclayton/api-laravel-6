@@ -166,6 +166,9 @@ return [
          * Package Service Providers...
          */
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        Prettus\Repository\Providers\RepositoryServiceProvider::class,
+        App\Providers\RepositoryServiceProvider::class,
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
         /*
          * Application Service Providers...
          */
