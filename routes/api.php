@@ -14,7 +14,6 @@ use Illuminate\Http\Request;
 */
 
 
-
 $api = app('Dingo\Api\Routing\Router');
 $api->version('v1', [
     'middleware' => 'api.throttle',
@@ -59,13 +58,15 @@ $api->version('v1', [
 
         $api->group([
             'namespace' => 'App\Http\Controllers',
-            'middleware' =>['api.throttle', 'api.auth', 'auth:api'],
+            'middleware' => ['api.throttle', 'api.auth', 'auth:api'],
             'prefix' => 'users',
             'as' => '.users'
         ], function ($api) {
             $api->get('/', 'UsersController@index')->name('.index');
             $api->post('/', 'UsersController@store')->name('.store');
             $api->put('/{user}', 'UsersController@update')->name('.update');
+            $api->get('/{user}', 'UsersController@show')->name('.show');
+
         });
 
     });

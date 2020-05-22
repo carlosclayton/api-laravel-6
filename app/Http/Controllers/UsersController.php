@@ -95,15 +95,9 @@ class UsersController extends Controller
     public function show($id)
     {
         $user = $this->repository->find($id);
-
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $user,
-            ]);
-        }
-
-        return view('users.show', compact('user'));
+        return response()->json([
+            'data' => $user,
+        ]);
     }
 
     /**
