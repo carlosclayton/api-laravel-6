@@ -11,5 +11,5 @@ use Prettus\Repository\Contracts\RepositoryInterface;
  */
 interface UserRepository extends RepositoryInterface
 {
-    //
+    public function paginate($limit = null, $page = null, $columns = ['*'], $method = "paginate");
 }

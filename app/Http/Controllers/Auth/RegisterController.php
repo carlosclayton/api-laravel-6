@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Repositories\UserRepository;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Prettus\Validator\Exceptions\ValidatorException;
 
 class RegisterController extends Controller
 {
@@ -30,14 +33,17 @@ class RegisterController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
+    protected $repository;
+
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(UserRepository $repository)
     {
+        $this->repository = $repository;
         $this->middleware('guest');
     }
 
@@ -60,7 +66,7 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\User
+     * @return \App\Models\User
      */
     protected function create(array $data)
     {
@@ -69,5 +75,29 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+    public function store(Request $request)
+    {
+        $user['name'] = $request->get('name');
+        $user['email'] = $request->get('email');
+        $user['password'] = bcrypt($request->get('password'));
+        $user['role'] = 2;
+        try {
+            $u = $this->repository->updateOrCreate(
+                ['email' => $request->get('email')],
+                ['name' => $request->get('name'), 'password' =>
+                    bcrypt($request->get('password')), 'role' => 2]
+            );
+            $credentials = $request->only('email', 'password');
+            $token = \Auth::guard('api')->attempt($credentials);
+            return response()->json([
+                'token' => $token
+            ]);
+        } catch (ValidatorException $e) {
+            return response()->json([
+                'message' => $e->getMessageBag()
+            ]);
+        }
     }
 }
