@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Notifications\changeResetPassword;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
@@ -43,8 +44,13 @@ class User extends Authenticatable implements Transformable, JWTSubject
     use TransformableTrait;
     use Notifiable;
 
+    use SoftDeletes;
+    protected $dates = ['deleted_at'];
+
     const ROLE_ADMIN = 1;
     const ROLE_CLIENT = 2;
+
+
 
     /**
      * The attributes that are mass assignable.

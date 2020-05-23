@@ -16,6 +16,13 @@ use App\Validators\UserValidator;
  */
 class UserRepositoryEloquent extends BaseRepository implements UserRepository
 {
+    protected $fieldSearchable = [
+        'id' => '=',
+        'name' => 'like',
+        'email' => 'like',
+        'role' => '='
+    ];
+
     /**
      * Specify Model class name
      *
@@ -24,6 +31,16 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
     public function model()
     {
         return User::class;
+    }
+
+    public function onlyTrashed()
+    {
+        $this->model = $this->model->onlyTrashed();
+        return $this;
+    }
+    public function restore($id)
+    {
+        return $this->model->onlyTrashed()->find($id)->restore();
     }
 
     /**

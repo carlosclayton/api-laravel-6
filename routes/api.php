@@ -62,10 +62,13 @@ $api->version('v1', [
             'prefix' => 'users',
             'as' => '.users'
         ], function ($api) {
+            $api->get('trashed', 'UsersController@trashed')->name('.trashed');
             $api->get('/', 'UsersController@index')->name('.index');
             $api->post('/', 'UsersController@store')->name('.store');
             $api->put('/{user}', 'UsersController@update')->name('.update');
             $api->get('/{user}', 'UsersController@show')->name('.show');
+            $api->delete('/{user}', 'UsersController@destroy')->name('.destroy');
+            $api->put('/restore/{user}', 'UsersController@restore')->name('users.restore');
 
         });
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Criteria\OnlyTrashedCriteria;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -153,16 +154,34 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        $deleted = $this->repository->delete($id);
+        $this->repository->delete($id);
+        return response()->json([
+            'message' => 'User deleted.'
+        ]);
+    }
 
-        if (request()->wantsJson()) {
+    public function trashed()
+    {
+        $this->repository->pushCriteria(new OnlyTrashedCriteria());
+        $users = $this->repository->paginate(10);
 
+        return response()->json([
+            'data' => $users,
+        ]);
+    }
+
+    public function restore($id)
+    {
+        try {
+            $this->repository->restore($id);
             return response()->json([
-                'message' => 'User deleted.',
-                'deleted' => $deleted,
+                'data' => 'User restored.'
+            ]);
+        } catch (ValidatorException $e) {
+            return response()->json([
+                'error' => true,
+                'message' => $e->getMessageBag()
             ]);
         }
-
-        return redirect()->back()->with('message', 'User deleted.');
     }
 }
