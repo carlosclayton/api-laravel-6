@@ -68,8 +68,23 @@ $api->version('v1', [
             $api->put('/{user}', 'UsersController@update')->name('.update');
             $api->get('/{user}', 'UsersController@show')->name('.show');
             $api->delete('/{user}', 'UsersController@destroy')->name('.destroy');
-            $api->put('/restore/{user}', 'UsersController@restore')->name('users.restore');
+            $api->put('/restore/{user}', 'UsersController@restore')->name('.restore');
 
+        });
+
+        $api->group([
+            'namespace' => 'App\Http\Controllers',
+            'middleware' => ['api.throttle', 'api.auth', 'auth:api'],
+            'prefix' => 'categories',
+            'as' => 'api.categories',
+        ], function ($api) {
+            $api->get('/trashed', 'CategoriesController@trashed')->name('.trashed');
+            $api->put('/restore/{category}', 'CategoriesController@restore')->name('.restore');
+            $api->get('/', 'CategoriesController@index')->name('.index');
+            $api->post('/', 'CategoriesController@store')->name('.store');
+            $api->put('/{category}', 'CategoriesController@update')->name('.update');
+            $api->get('/{category}', 'CategoriesController@show')->name('.show');
+            $api->delete('/{user}', 'CategoriesController@destroy')->name('.destroy');
         });
 
     });
