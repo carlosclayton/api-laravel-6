@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Database\Seeder;
 
 class CategoriesTableSeeder extends Seeder
@@ -12,6 +13,9 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Category::class, 50)->create();
+        factory(Category::class, 10)->create()
+            ->each(function ($cat) {
+                $cat->products()->saveMany(factory(Product::class, 10)->make()); //Pra cada categoria, adiciona 10 produtos
+            });
     }
 }

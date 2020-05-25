@@ -38,7 +38,7 @@ class ProductsController extends Controller
     public function __construct(ProductRepository $repository, ProductValidator $validator)
     {
         $this->repository = $repository;
-        $this->validator  = $validator;
+        $this->validator = $validator;
     }
 
     /**
@@ -46,25 +46,20 @@ class ProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $products = $this->repository->all();
-
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $products,
-            ]);
-        }
-
-        return view('products.index', compact('products'));
+        $products = $this->repository->paginate($request->get('limit',
+            10), $request->get('page', 1));
+        return response()->json([
+            'data' => $products,
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  ProductCreateRequest $request
+     * @param ProductCreateRequest $request
      *
      * @return \Illuminate\Http\Response
      *
@@ -80,7 +75,7 @@ class ProductsController extends Controller
 
             $response = [
                 'message' => 'Product created.',
-                'data'    => $product->toArray(),
+                'data' => $product->toArray(),
             ];
 
             if ($request->wantsJson()) {
@@ -92,7 +87,7 @@ class ProductsController extends Controller
         } catch (ValidatorException $e) {
             if ($request->wantsJson()) {
                 return response()->json([
-                    'error'   => true,
+                    'error' => true,
                     'message' => $e->getMessageBag()
                 ]);
             }
@@ -104,7 +99,7 @@ class ProductsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
@@ -125,7 +120,7 @@ class ProductsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
@@ -139,8 +134,8 @@ class ProductsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  ProductUpdateRequest $request
-     * @param  string            $id
+     * @param ProductUpdateRequest $request
+     * @param string $id
      *
      * @return Response
      *
@@ -156,7 +151,7 @@ class ProductsController extends Controller
 
             $response = [
                 'message' => 'Product updated.',
-                'data'    => $product->toArray(),
+                'data' => $product->toArray(),
             ];
 
             if ($request->wantsJson()) {
@@ -170,7 +165,7 @@ class ProductsController extends Controller
             if ($request->wantsJson()) {
 
                 return response()->json([
-                    'error'   => true,
+                    'error' => true,
                     'message' => $e->getMessageBag()
                 ]);
             }
@@ -183,7 +178,7 @@ class ProductsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */

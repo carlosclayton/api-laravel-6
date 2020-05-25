@@ -87,6 +87,16 @@ $api->version('v1', [
             $api->delete('/{user}', 'CategoriesController@destroy')->name('.destroy');
         });
 
+
+        $api->group([
+            'namespace' => 'App\Http\Controllers',
+            'middleware' => ['api.throttle', 'api.auth', 'auth:api'],
+            'prefix' => 'products',
+            'as' => 'api.products',
+        ], function ($api) {$api->get('/', 'ProductsController@index')->name('.index');
+        });
+
     });
+
 
 

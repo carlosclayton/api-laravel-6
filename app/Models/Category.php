@@ -30,6 +30,8 @@ use Prettus\Repository\Traits\TransformableTrait;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Category withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Category withoutTrashed()
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Product[] $products
+ * @property-read int|null $products_count
  */
 class Category extends Model implements Transformable
 {
@@ -44,4 +46,8 @@ class Category extends Model implements Transformable
      */
     protected $fillable = ['name', 'description'];
 
+
+    function products(){
+        return $this->hasMany(Product::class);
+    }
 }
