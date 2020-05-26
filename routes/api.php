@@ -96,6 +96,7 @@ $api->version('v1', [
         ], function ($api) {
             $api->get('/', 'ProductsController@index')->name('.index');
             $api->post('/', 'ProductsController@store')->name('.store');
+            $api->put('/{product}', 'ProductsController@update')->name('.update');
         });
 
     });
