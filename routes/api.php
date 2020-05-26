@@ -101,8 +101,15 @@ $api->version('v1', [
             $api->put('/{product}', 'ProductsController@update')->name('.update');
             $api->get('/{product}', 'ProductsController@show')->name('.show');
             $api->delete('/{product}', 'ProductsController@destroy')->name('.destroy');
+        });
 
-
+        $api->group([
+            'namespace' => 'App\Http\Controllers',
+            'middleware' => ['api.throttle', 'api.auth', 'auth:api'],
+            'prefix' => 'clients',
+            'as' => 'api.clients',
+        ], function ($api) {
+            $api->get('/', 'ClientsController@index')->name('.index');
         });
 
     });

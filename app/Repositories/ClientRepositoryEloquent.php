@@ -25,11 +25,33 @@ class ClientRepositoryEloquent extends BaseRepository implements ClientRepositor
         return Client::class;
     }
 
+
     /**
-    * Specify Validator class name
-    *
-    * @return mixed
-    */
+     * @param null $limit
+     * @param null $page
+     * @param string[] $columns
+     * @param string $method
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator|\Illuminate\Support\Collection|mixed
+     * @throws \Prettus\Repository\Exceptions\RepositoryException
+     */
+    public function paginate($limit = null, $page = null, $columns = ['*'], $method = "paginate")
+    {
+        $this->applyCriteria();
+        $this->applyScope();
+        $limit = is_null($limit) ?
+            config('repository.pagination.limit', 15) : $limit;
+        $results = $this->model->{$method}($limit, $columns, 'page',
+            $page);
+        $results->appends(app('request')->query());
+        $this->resetModel();
+        return $this->parserResult($results);
+    }
+
+    /**
+     * Specify Validator class name
+     *
+     * @return mixed
+     */
     public function validator()
     {
 
@@ -44,5 +66,5 @@ class ClientRepositoryEloquent extends BaseRepository implements ClientRepositor
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
-    
+
 }

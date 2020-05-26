@@ -38,7 +38,7 @@ class ClientsController extends Controller
     public function __construct(ClientRepository $repository, ClientValidator $validator)
     {
         $this->repository = $repository;
-        $this->validator  = $validator;
+        $this->validator = $validator;
     }
 
     /**
@@ -46,25 +46,20 @@ class ClientsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $clients = $this->repository->all();
-
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $clients,
-            ]);
-        }
-
-        return view('clients.index', compact('clients'));
+        $clients = $this->repository->paginate($request->get('limit',
+            10), $request->get('page', 1));
+        return response()->json([
+            'data' => $clients,
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  ClientCreateRequest $request
+     * @param ClientCreateRequest $request
      *
      * @return \Illuminate\Http\Response
      *
@@ -80,7 +75,7 @@ class ClientsController extends Controller
 
             $response = [
                 'message' => 'Client created.',
-                'data'    => $client->toArray(),
+                'data' => $client->toArray(),
             ];
 
             if ($request->wantsJson()) {
@@ -92,7 +87,7 @@ class ClientsController extends Controller
         } catch (ValidatorException $e) {
             if ($request->wantsJson()) {
                 return response()->json([
-                    'error'   => true,
+                    'error' => true,
                     'message' => $e->getMessageBag()
                 ]);
             }
@@ -104,7 +99,7 @@ class ClientsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
@@ -125,7 +120,7 @@ class ClientsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
@@ -139,8 +134,8 @@ class ClientsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  ClientUpdateRequest $request
-     * @param  string            $id
+     * @param ClientUpdateRequest $request
+     * @param string $id
      *
      * @return Response
      *
@@ -156,7 +151,7 @@ class ClientsController extends Controller
 
             $response = [
                 'message' => 'Client updated.',
-                'data'    => $client->toArray(),
+                'data' => $client->toArray(),
             ];
 
             if ($request->wantsJson()) {
@@ -170,7 +165,7 @@ class ClientsController extends Controller
             if ($request->wantsJson()) {
 
                 return response()->json([
-                    'error'   => true,
+                    'error' => true,
                     'message' => $e->getMessageBag()
                 ]);
             }
@@ -183,7 +178,7 @@ class ClientsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
