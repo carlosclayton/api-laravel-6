@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Presenters\ProductPresenter;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Repositories\ProductRepository;
@@ -67,5 +68,9 @@ class ProductRepositoryEloquent extends BaseRepository implements ProductReposit
         $this->pushCriteria(app(RequestCriteria::class));
     }
 
+    public function presenter()
+    {
+        return new ProductPresenter();
+    }
 
 }

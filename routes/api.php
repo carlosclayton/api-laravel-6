@@ -93,7 +93,9 @@ $api->version('v1', [
             'middleware' => ['api.throttle', 'api.auth', 'auth:api'],
             'prefix' => 'products',
             'as' => 'api.products',
-        ], function ($api) {$api->get('/', 'ProductsController@index')->name('.index');
+        ], function ($api) {
+            $api->get('/', 'ProductsController@index')->name('.index');
+            $api->post('/', 'ProductsController@store')->name('.store');
         });
 
     });

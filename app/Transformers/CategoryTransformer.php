@@ -13,6 +13,8 @@ use App\Models\Category;
  */
 class CategoryTransformer extends TransformerAbstract
 {
+    protected $availableIncludes = ['products'];
+
     /**
      * Transform the Category entity.
      *
@@ -23,7 +25,8 @@ class CategoryTransformer extends TransformerAbstract
     public function transform(Category $model)
     {
         return [
-            'id' => (int)$model->id,
+            'id'
+            => (int)$model->id,
             'name' => $model->name,
             'description' => $model->description,
             'created_at' => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'),
@@ -31,4 +34,10 @@ class CategoryTransformer extends TransformerAbstract
             'deleted_at' => ($model->deleted_at == null) ? null : Carbon::parse($model->deleted_at)->format('d/m/Y H:i:s'),
         ];
     }
+
+    public function includeProducts(Category $model)
+    {
+        return $this->collection($model->products, new ProductTransformer());
+    }
+
 }
