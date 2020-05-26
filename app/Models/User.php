@@ -43,6 +43,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereDeletedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\User withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\Models\User withoutTrashed()
+ * @property-read \App\Models\Client|null $client
  */
 class User extends Authenticatable implements Transformable, JWTSubject
 {
@@ -103,5 +104,12 @@ class User extends Authenticatable implements Transformable, JWTSubject
                 "email" => $this->email
             ]
         ];
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function client(){
+        return $this->hasOne(Client::class);
     }
 }

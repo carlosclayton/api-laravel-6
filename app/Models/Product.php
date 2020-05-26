@@ -19,6 +19,22 @@ use Prettus\Repository\Traits\TransformableTrait;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Product withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\Models\Product withoutTrashed()
  * @mixin \Eloquent
+ * @property int $id
+ * @property string $name
+ * @property float $price
+ * @property string|null $description
+ * @property int $category_id
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereCategoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product wherePrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereUpdatedAt($value)
  */
 class Product extends Model implements Transformable
 {
