@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Criteria\OnlyTrashedCriteria;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -160,5 +161,24 @@ class ProductsController extends Controller
         return response()->json([
             'data' => $categories,
         ]);
+    }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function restore($id)
+    {
+        try {
+            $this->repository->restore($id);
+            return response()->json([
+                'data' => 'Product restored.'
+            ]);
+        } catch (ValidatorException $e) {
+            return response()->json([
+                'error' => true,
+                'message' => $e->getMessageBag()
+            ]);
+        }
     }
 }

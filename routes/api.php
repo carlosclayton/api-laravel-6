@@ -94,11 +94,15 @@ $api->version('v1', [
             'prefix' => 'products',
             'as' => 'api.products',
         ], function ($api) {
+            $api->get('/trashed', 'ProductsController@trashed')->name('.trashed');
+            $api->put('/restore/{product}', 'ProductsController@restore')->name('.restore');
             $api->get('/', 'ProductsController@index')->name('.index');
             $api->post('/', 'ProductsController@store')->name('.store');
             $api->put('/{product}', 'ProductsController@update')->name('.update');
             $api->get('/{product}', 'ProductsController@show')->name('.show');
             $api->delete('/{product}', 'ProductsController@destroy')->name('.destroy');
+
+
         });
 
     });
