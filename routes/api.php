@@ -97,6 +97,8 @@ $api->version('v1', [
             $api->get('/', 'ProductsController@index')->name('.index');
             $api->post('/', 'ProductsController@store')->name('.store');
             $api->put('/{product}', 'ProductsController@update')->name('.update');
+            $api->get('/{product}', 'ProductsController@show')->name('.show');
+            $api->delete('/{product}', 'ProductsController@destroy')->name('.destroy');
         });
 
     });

@@ -90,15 +90,9 @@ class ProductsController extends Controller
     public function show($id)
     {
         $product = $this->repository->find($id);
-
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $product,
-            ]);
-        }
-
-        return view('products.show', compact('product'));
+        return response()->json([
+            'data' => $product,
+        ]);
     }
 
     /**
@@ -149,16 +143,22 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        $deleted = $this->repository->delete($id);
+        $this->repository->delete($id);
+        return response()->json([
+            'message' => 'Product deleted.'
+        ]);
+    }
 
-        if (request()->wantsJson()) {
 
-            return response()->json([
-                'message' => 'Product deleted.',
-                'deleted' => $deleted,
-            ]);
-        }
-
-        return redirect()->back()->with('message', 'Product deleted.');
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function trashed()
+    {
+        $this->repository->pushCriteria(new OnlyTrashedCriteria());
+        $categories = $this->repository->paginate(10);
+        return response()->json([
+            'data' => $categories,
+        ]);
     }
 }
