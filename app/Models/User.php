@@ -44,6 +44,8 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\User withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\Models\User withoutTrashed()
  * @property-read \App\Models\Client|null $client
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Order[] $orders
+ * @property-read int|null $orders_count
  */
 class User extends Authenticatable implements Transformable, JWTSubject
 {
@@ -111,5 +113,12 @@ class User extends Authenticatable implements Transformable, JWTSubject
      */
     public function client(){
         return $this->hasOne(Client::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function orders(){
+        return $this->hasMany(Order::class);
     }
 }
