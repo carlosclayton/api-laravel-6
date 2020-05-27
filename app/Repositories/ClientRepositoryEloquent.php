@@ -41,6 +41,23 @@ class ClientRepositoryEloquent extends BaseRepository implements ClientRepositor
         return Client::class;
     }
 
+    /**
+     * @return $this
+     */
+    public function onlyTrashed()
+    {
+        $this->model = $this->model->onlyTrashed();
+        return $this;
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function restore($id)
+    {
+        return $this->model->onlyTrashed()->find($id)->restore();
+    }
 
     /**
      * @param null $limit

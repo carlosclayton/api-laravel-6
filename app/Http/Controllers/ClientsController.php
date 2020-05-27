@@ -160,4 +160,24 @@ class ClientsController extends Controller
             'data' => $clients,
         ]);
     }
+
+
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function restore($id)
+    {
+
+        try {
+            $this->repository->restore($id);
+            return response()->json([
+                'data' => 'Client restored.'
+            ]);
+        } catch (ValidatorException $e) {
+            return response()->json([
+                'message' => $e->getMessageBag()
+            ]);
+        }
+    }
 }
