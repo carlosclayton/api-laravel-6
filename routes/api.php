@@ -113,6 +113,7 @@ $api->version('v1', [
             $api->post('/', 'ClientsController@store')->name('.store');
             $api->put('/{client}', 'ClientsController@update')->name('.update');
             $api->get('/{client}', 'ClientsController@show')->name('.show');
+            $api->delete('/{client}', 'ClientsController@destroy')->name('.destroy');
         });
 
     });

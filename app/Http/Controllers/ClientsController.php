@@ -142,16 +142,9 @@ class ClientsController extends Controller
      */
     public function destroy($id)
     {
-        $deleted = $this->repository->delete($id);
-
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'message' => 'Client deleted.',
-                'deleted' => $deleted,
-            ]);
-        }
-
-        return redirect()->back()->with('message', 'Client deleted.');
+        $this->repository->delete($id);
+        return response()->json([
+            'message' => 'Client deleted.'
+        ]);
     }
 }
