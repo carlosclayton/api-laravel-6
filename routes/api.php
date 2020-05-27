@@ -110,6 +110,7 @@ $api->version('v1', [
             'as' => 'api.clients',
         ], function ($api) {
             $api->get('/', 'ClientsController@index')->name('.index');
+            $api->post('/', 'ClientsController@store')->name('.store');
         });
 
     });

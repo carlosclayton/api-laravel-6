@@ -13,6 +13,8 @@ use App\Models\User;
  */
 class UserTransformer extends TransformerAbstract
 {
+    protected $availableIncludes = ['client'];
+
     /**
      * Transform the User entity.
      *
@@ -35,4 +37,15 @@ class UserTransformer extends TransformerAbstract
                 Carbon::parse($model->deleted_at)->format('d/m/Y H:i:s'),
         ];
     }
+
+    /**
+     * @param User $model
+     * @return \League\Fractal\Resource\Collection
+     */
+    public function includeClient(User $model)
+    {
+        if($model->client)
+        return $this->item($model->client, new ClientTransformer());
+    }
+
 }

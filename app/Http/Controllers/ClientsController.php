@@ -68,31 +68,14 @@ class ClientsController extends Controller
     public function store(ClientCreateRequest $request)
     {
         try {
-
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
-
-            $client = $this->repository->create($request->all());
-
-            $response = [
+            $this->repository->create($request->all());
+            return response()->json([
                 'message' => 'Client created.',
-                'data' => $client->toArray(),
-            ];
-
-            if ($request->wantsJson()) {
-
-                return response()->json($response);
-            }
-
-            return redirect()->back()->with('message', $response['message']);
+            ]);
         } catch (ValidatorException $e) {
-            if ($request->wantsJson()) {
-                return response()->json([
-                    'error' => true,
-                    'message' => $e->getMessageBag()
-                ]);
-            }
-
-            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
+            return response()->json([
+                'message' => $e->getMessageBag()
+            ]);
         }
     }
 

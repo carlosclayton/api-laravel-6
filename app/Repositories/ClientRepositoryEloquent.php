@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Presenters\ClientPresenter;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Repositories\ClientRepository;
@@ -15,6 +16,21 @@ use App\Validators\ClientValidator;
  */
 class ClientRepositoryEloquent extends BaseRepository implements ClientRepository
 {
+    protected $fieldSearchable = [
+        'id' => '=',
+        'name' => 'like',
+        'email' => '='
+    ];
+
+
+    /**
+     * @return ClientPresenter|string|null
+     */
+    public function presenter()
+    {
+        return new ClientPresenter();
+    }
+
     /**
      * Specify Model class name
      *
