@@ -89,15 +89,9 @@ class ClientsController extends Controller
     public function show($id)
     {
         $client = $this->repository->find($id);
-
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $client,
-            ]);
-        }
-
-        return view('clients.show', compact('client'));
+        return response()->json([
+            'data' => $client,
+        ]);
     }
 
     /**
@@ -127,33 +121,14 @@ class ClientsController extends Controller
     public function update(ClientUpdateRequest $request, $id)
     {
         try {
-
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
-
-            $client = $this->repository->update($request->all(), $id);
-
-            $response = [
+            $this->repository->update($request->all(), $id);
+            return response()->json([
                 'message' => 'Client updated.',
-                'data' => $client->toArray(),
-            ];
-
-            if ($request->wantsJson()) {
-
-                return response()->json($response);
-            }
-
-            return redirect()->back()->with('message', $response['message']);
+            ]);
         } catch (ValidatorException $e) {
-
-            if ($request->wantsJson()) {
-
-                return response()->json([
-                    'error' => true,
-                    'message' => $e->getMessageBag()
-                ]);
-            }
-
-            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
+            return response()->json([
+                'message' => $e->getMessageBag()
+            ]);
         }
     }
 

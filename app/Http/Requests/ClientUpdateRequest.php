@@ -13,7 +13,7 @@ class ClientUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,14 @@ class ClientUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'type' => 'required|max:20',
+            'address' => 'required|max:255',
+            'city' => 'required|max:20',
+            'state' => 'required|max:20',
+            'zipcode' => 'required|max:20',
+            'phone' => 'required|max:20',
+            'email' => 'required|email',
+            'user_id' => 'required'
         ];
     }
 }
