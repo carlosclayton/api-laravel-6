@@ -109,6 +109,7 @@ $api->version('v1', [
             'prefix' => 'clients',
             'as' => 'api.clients',
         ], function ($api) {
+            $api->get('/trashed', 'ClientsController@trashed')->name('.trashed');
             $api->get('/', 'ClientsController@index')->name('.index');
             $api->post('/', 'ClientsController@store')->name('.store');
             $api->put('/{client}', 'ClientsController@update')->name('.update');
