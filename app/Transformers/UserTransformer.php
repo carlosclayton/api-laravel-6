@@ -13,7 +13,7 @@ use App\Models\User;
  */
 class UserTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = ['client'];
+    protected $availableIncludes = ['client', 'orders'];
 
     /**
      * Transform the User entity.
@@ -46,6 +46,12 @@ class UserTransformer extends TransformerAbstract
     {
         if($model->client)
         return $this->item($model->client, new ClientTransformer());
+    }
+
+    public function includeOrders(User $model)
+    {
+        return $this->collection($model->orders, new
+        OrderTransformer());
     }
 
 }

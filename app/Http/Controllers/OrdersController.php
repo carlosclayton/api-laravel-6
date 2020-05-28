@@ -38,7 +38,7 @@ class OrdersController extends Controller
     public function __construct(OrderRepository $repository, OrderValidator $validator)
     {
         $this->repository = $repository;
-        $this->validator  = $validator;
+        $this->validator = $validator;
     }
 
     /**
@@ -46,25 +46,20 @@ class OrdersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $orders = $this->repository->all();
-
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $orders,
-            ]);
-        }
-
-        return view('orders.index', compact('orders'));
+        $orders = $this->repository->paginate($request->get('limit',
+            10), $request->get('page', 1));
+        return response()->json([
+            'data' => $orders,
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  OrderCreateRequest $request
+     * @param OrderCreateRequest $request
      *
      * @return \Illuminate\Http\Response
      *
@@ -80,7 +75,7 @@ class OrdersController extends Controller
 
             $response = [
                 'message' => 'Order created.',
-                'data'    => $order->toArray(),
+                'data' => $order->toArray(),
             ];
 
             if ($request->wantsJson()) {
@@ -92,7 +87,7 @@ class OrdersController extends Controller
         } catch (ValidatorException $e) {
             if ($request->wantsJson()) {
                 return response()->json([
-                    'error'   => true,
+                    'error' => true,
                     'message' => $e->getMessageBag()
                 ]);
             }
@@ -104,7 +99,7 @@ class OrdersController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
@@ -125,7 +120,7 @@ class OrdersController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */
@@ -139,8 +134,8 @@ class OrdersController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  OrderUpdateRequest $request
-     * @param  string            $id
+     * @param OrderUpdateRequest $request
+     * @param string $id
      *
      * @return Response
      *
@@ -156,7 +151,7 @@ class OrdersController extends Controller
 
             $response = [
                 'message' => 'Order updated.',
-                'data'    => $order->toArray(),
+                'data' => $order->toArray(),
             ];
 
             if ($request->wantsJson()) {
@@ -170,7 +165,7 @@ class OrdersController extends Controller
             if ($request->wantsJson()) {
 
                 return response()->json([
-                    'error'   => true,
+                    'error' => true,
                     'message' => $e->getMessageBag()
                 ]);
             }
@@ -183,7 +178,7 @@ class OrdersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return \Illuminate\Http\Response
      */

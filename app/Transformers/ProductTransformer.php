@@ -13,7 +13,7 @@ use App\Models\Product;
  */
 class ProductTransformer extends TransformerAbstract
 {
-    protected $defaultIncludes = ['category'];
+    protected $defaultIncludes = ['category', 'orders'];
 
     /**
      * Transform the Product entity.
@@ -39,6 +39,12 @@ class ProductTransformer extends TransformerAbstract
     public function includeCategory(Product $model)
     {
         return $this->item($model->category, new CategoryTransformer());
+    }
+
+    public function includeOrders(Product $model)
+    {
+        return $this->collection($model->orders, new
+        OrderTransformer());
     }
 
 }
