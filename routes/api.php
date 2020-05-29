@@ -126,6 +126,7 @@ $api->version('v1', [
             'prefix' => 'orders',
             'as' => 'api.orders',
         ], function ($api) {
+            $api->get('/trashed', 'OrdersController@trashed')->name('.trashed');
             $api->get('/', 'OrdersController@index')->name('.index');
             $api->post('/', 'OrdersController@store')->name('.store');
             $api->put('/{order}', 'OrdersController@update')->name('.update');

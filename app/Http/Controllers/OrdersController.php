@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Criteria\OnlyTrashedCriteria;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -144,6 +145,17 @@ class OrdersController extends Controller
         $this->repository->delete($id);
         return response()->json([
             'message' => 'Order deleted.'
+        ]);
+    }
+
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function trashed()
+    {
+        $this->repository->pushCriteria(new OnlyTrashedCriteria());
+        $categories = $this->repository->paginate(10);
+        return response()->json(['data' => $categories,
         ]);
     }
 }
