@@ -119,7 +119,6 @@ $api->version('v1', [
         });
 
 
-
         $api->group([
             'namespace' => 'App\Http\Controllers',
             'middleware' => ['api.throttle', 'api.auth', 'auth:api'],
@@ -127,6 +126,7 @@ $api->version('v1', [
             'as' => 'api.orders',
         ], function ($api) {
             $api->get('/trashed', 'OrdersController@trashed')->name('.trashed');
+            $api->put('/restore/{order}', 'OrdersController@restore')->name('.restore');
             $api->get('/', 'OrdersController@index')->name('.index');
             $api->post('/', 'OrdersController@store')->name('.store');
             $api->put('/{order}', 'OrdersController@update')->name('.update');

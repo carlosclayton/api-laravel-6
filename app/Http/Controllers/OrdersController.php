@@ -158,4 +158,23 @@ class OrdersController extends Controller
         return response()->json(['data' => $categories,
         ]);
     }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function restore($id)
+    {
+        try {
+            $this->repository->restore($id);
+            return response()->json([
+                'data' => 'Order restored.'
+            ]);
+        } catch (ValidatorException $e) {
+            return response()->json([
+                'error' => true,
+                'message' => $e->getMessageBag()
+            ]);
+        }
+    }
 }

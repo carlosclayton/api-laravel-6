@@ -33,6 +33,24 @@ class OrderRepositoryEloquent extends BaseRepository implements OrderRepository
     }
 
     /**
+     * @return $this
+     */
+    public function onlyTrashed()
+    {
+        $this->model = $this->model->onlyTrashed();
+        return $this;
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function restore($id)
+    {
+        return $this->model->onlyTrashed()->find($id)->restore();
+    }
+
+    /**
     * Specify Validator class name
     *
     * @return mixed
