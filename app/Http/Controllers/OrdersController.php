@@ -68,32 +68,14 @@ class OrdersController extends Controller
     public function store(OrderCreateRequest $request)
     {
         try {
-
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
-
-            $order = $this->repository->create($request->all());
-
-            $response = [
+            $this->repository->create($request->all());
+            return response()->json([
                 'message' => 'Order created.',
-                'data' => $order->toArray(),
-            ];
-
-            if ($request->wantsJson()) {
-
-                return response()->json($response);
-            }
-
-            return redirect()->back()->with('message', $response['message']);
+            ]);
         } catch (ValidatorException $e) {
-            if ($request->wantsJson()) {
-                return response()->json([
-                    'error' => true,
-                    'message' => $e->getMessageBag()
-                ]);
-            }
-
-            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
-        }
+            return response()->json([
+                'message' => $e->getMessageBag()
+            ]);}
     }
 
     /**
@@ -144,33 +126,14 @@ class OrdersController extends Controller
     public function update(OrderUpdateRequest $request, $id)
     {
         try {
-
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
-
-            $order = $this->repository->update($request->all(), $id);
-
-            $response = [
-                'message' => 'Order updated.',
-                'data' => $order->toArray(),
-            ];
-
-            if ($request->wantsJson()) {
-
-                return response()->json($response);
-            }
-
-            return redirect()->back()->with('message', $response['message']);
+            $this->repository->update($request->all(), $id);
+            return response()->json([
+                'message' => 'Order updated.'
+            ]);
         } catch (ValidatorException $e) {
-
-            if ($request->wantsJson()) {
-
-                return response()->json([
-                    'error' => true,
-                    'message' => $e->getMessageBag()
-                ]);
-            }
-
-            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
+            return response()->json([
+                'message' => $e->getMessageBag()
+            ]);
         }
     }
 

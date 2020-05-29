@@ -118,6 +118,8 @@ $api->version('v1', [
             $api->delete('/{client}', 'ClientsController@destroy')->name('.destroy');
         });
 
+
+
         $api->group([
             'namespace' => 'App\Http\Controllers',
             'middleware' => ['api.throttle', 'api.auth', 'auth:api'],
@@ -125,8 +127,9 @@ $api->version('v1', [
             'as' => 'api.orders',
         ], function ($api) {
             $api->get('/', 'OrdersController@index')->name('.index');
+            $api->post('/', 'OrdersController@store')->name('.store');
+            $api->post('/', 'OrdersController@update')->name('.update');
         });
-
     });
 
 
