@@ -128,7 +128,9 @@ $api->version('v1', [
         ], function ($api) {
             $api->get('/', 'OrdersController@index')->name('.index');
             $api->post('/', 'OrdersController@store')->name('.store');
-            $api->post('/', 'OrdersController@update')->name('.update');
+            $api->put('/{order}', 'OrdersController@update')->name('.update');
+            $api->get('/{order}', 'OrdersController@show')->name('.show');
+            $api->delete('/{order}', 'OrdersController@destroy')->name('.destroy');
         });
     });
 

@@ -88,15 +88,9 @@ class OrdersController extends Controller
     public function show($id)
     {
         $order = $this->repository->find($id);
-
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $order,
-            ]);
-        }
-
-        return view('orders.show', compact('order'));
+        return response()->json([
+            'data' => $order,
+        ]);
     }
 
     /**
@@ -147,16 +141,9 @@ class OrdersController extends Controller
      */
     public function destroy($id)
     {
-        $deleted = $this->repository->delete($id);
-
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'message' => 'Order deleted.',
-                'deleted' => $deleted,
-            ]);
-        }
-
-        return redirect()->back()->with('message', 'Order deleted.');
+        $this->repository->delete($id);
+        return response()->json([
+            'message' => 'Order deleted.'
+        ]);
     }
 }
