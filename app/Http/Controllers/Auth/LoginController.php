@@ -10,27 +10,27 @@ use Lang;
 
 /**
  * @OA\Info(
- * version="1.0.0",
- * title="API RESTFUL Laravel 6.0",
- * description="L5 Swagger OpenApi description",
- * @OA\Contact(
- * email="carlos.clayton@gmail.com"
- * ),
- * @OA\License(
- * name="Apache 2.0",
- * url="http://www.apache.org/licenses/LICENSE-2.0.html"
- * )
+ *      version="1.0.0",
+ *      title="API RESTFUL Laravel 6.0",
+ *      description="API documentation project",
+ *      @OA\Contact(
+ *          email="carlos.clayton@gmail.com"
+ *      ),
+ *     @OA\License(
+ *         name="Apache 2.0",
+ *         url="http://www.apache.org/licenses/LICENSE-2.0.html"
+ *     )
  * )
  */
 
 /**
  * @OA\SecurityScheme(
- * type="apiKey",
- * description="Use a global client_id / client_secret and your username / password combo to obtain a token",
- * name="Authorization",
- * in="header",
- * scheme="http",
- * securityScheme="apiKey"
+ *     type="apiKey",
+ *     description="Use a global client_id / client_secret and your username / password combo to obtain a token",
+ *     name="Authorization",
+ *     in="header",
+ *     scheme="http",
+ *     securityScheme="apiKey"
  * )
  */
 class LoginController extends Controller
@@ -70,32 +70,32 @@ class LoginController extends Controller
 
     /**
      * @OA\Post(
-     * path="/api/access_token",
-     * summary="Get token",
-     * description="Return token",
-     * @OA\Parameter(
-     * name="email",
-     * description="Email",
-     * required=true,
-     * in="query",
-     * @OA\Schema(
-     * type="string"
-     * )
-     * ),
-     * @OA\Parameter(
-     * name="password",
-     * description="Password",
-     * required=true,
-     * in="query",
-     * @OA\Schema(
-     * type="string",
-     * format="password"
-     * )
-     * ),
-     * @OA\Response(
-     * response=200,
-     * description="successful operation"
-     * )
+     *      path="/api/access_token",
+     *      summary="Get token",
+     *      description="Return token",
+     *      @OA\Parameter(
+     *          name="email",
+     *          description="Email",
+     *          required=true,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="password",
+     *          description="Password",
+     *          required=true,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string",
+     *              format="password"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="successful operation"
+     *      )
      * )
      */
     public function accessToken(Request $request)
@@ -140,6 +140,18 @@ class LoginController extends Controller
         ], 403);
     }
 
+    /**
+     * @OA\Post(
+     *      tags={"Autentication"},
+     *      path="/api/logout",
+     *      summary="Logout ",
+     *      description="Logout",
+     *      @OA\Response(
+     *          response=200,
+     *          description="successful operation"
+     *       )
+     * )
+     */
     public function logout(Request $request)
     {
         \Auth::guard('api')->logout();
