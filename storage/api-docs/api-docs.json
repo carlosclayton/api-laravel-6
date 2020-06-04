@@ -236,6 +236,9 @@
         },
         "/api/categories/{id}": {
             "get": {
+                "tags": [
+                    "Categories"
+                ],
                 "summary": "Show a category",
                 "description": "Return a category",
                 "operationId": "getCategoryById",

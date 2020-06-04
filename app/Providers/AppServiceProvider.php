@@ -21,8 +21,9 @@ class AppServiceProvider extends ServiceProvider
             return response()->json(['error' => 'Unauthenticated'],
                 401);
         });
+
         if ($this->app->environment() !== 'production') {
-            $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
+//            $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
         }
     }
 
