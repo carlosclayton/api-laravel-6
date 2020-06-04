@@ -77,6 +77,46 @@ class RegisterController extends Controller
         ]);
     }
 
+    /**
+     * @OA\Post(
+     *      tags={"Autentication"},
+     *      path="/api/register",
+     *      summary="Register new user",
+     *      description="Register new user",
+     *      @OA\Parameter(
+     *          name="name",
+     *          description="Name",
+     *          required=true,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="email",
+     *          description="Email",
+     *          required=true,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="password",
+     *          description="Password",
+     *          required=true,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string",
+     *              format="password"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="successful operation"
+     *       )
+     * )
+     */
     public function store(Request $request)
     {
         $user['name'] = $request->get('name');
