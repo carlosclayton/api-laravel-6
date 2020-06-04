@@ -196,6 +196,9 @@
                 ]
             },
             "post": {
+                "tags": [
+                    "Categories"
+                ],
                 "summary": "Store a category",
                 "description": "Return message",
                 "operationId": "App\\Http\\Controllers\\CategoriesController::store",
