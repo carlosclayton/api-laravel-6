@@ -2,7 +2,7 @@
     "openapi": "3.0.0",
     "info": {
         "title": "API RESTFUL Laravel 6.0",
-        "description": "L5 Swagger OpenApi description",
+        "description": "API documentation project",
         "contact": {
             "email": "carlos.clayton@gmail.com"
         },
@@ -13,8 +13,63 @@
         "version": "1.0.0"
     },
     "paths": {
+        "/api/password": {
+            "post": {
+                "tags": [
+                    "Autentication"
+                ],
+                "summary": "Change password",
+                "description": "Receive an email to change password",
+                "operationId": "App\\Http\\Controllers\\Auth\\ForgotPasswordController::password",
+                "parameters": [
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "Password",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/api/password/forgot": {
+            "post": {
+                "tags": [
+                    "Autentication"
+                ],
+                "summary": "Forgot password",
+                "description": "Receive an email to change password",
+                "operationId": "App\\Http\\Controllers\\Auth\\ForgotPasswordController::sendResetLinkEmail",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "Email",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
         "/api/access_token": {
             "post": {
+                "tags": [
+                    "Autentication"
+                ],
                 "summary": "Get token",
                 "description": "Return token",
                 "operationId": "App\\Http\\Controllers\\Auth\\LoginController::accessToken",
@@ -46,8 +101,86 @@
                 }
             }
         },
+        "/api/logout": {
+            "post": {
+                "tags": [
+                    "Autentication"
+                ],
+                "summary": "Logout ",
+                "description": "Logout",
+                "operationId": "App\\Http\\Controllers\\Auth\\LoginController::logout",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/api/refresh_token": {
+            "post": {
+                "tags": [
+                    "Autentication"
+                ],
+                "summary": "Refresh token",
+                "description": "Refresh token",
+                "operationId": "App\\Http\\Controllers\\Auth\\LoginController::refreshToken",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "Autentication"
+                ],
+                "summary": "Register new user",
+                "description": "Register new user",
+                "operationId": "App\\Http\\Controllers\\Auth\\RegisterController::store",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "Email",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "Password",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "password"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
         "/api/categories": {
             "get": {
+                "tags": [
+                    "Categories"
+                ],
                 "summary": "List of categories",
                 "description": "Return a list of categories",
                 "operationId": "App\\Http\\Controllers\\CategoriesController::index",

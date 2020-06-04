@@ -70,6 +70,7 @@ class LoginController extends Controller
 
     /**
      * @OA\Post(
+     *      tags={"Autentication"},
      *      path="/api/access_token",
      *      summary="Get token",
      *      description="Return token",
@@ -95,7 +96,7 @@ class LoginController extends Controller
      *      @OA\Response(
      *          response=200,
      *          description="successful operation"
-     *      )
+     *       )
      * )
      */
     public function accessToken(Request $request)

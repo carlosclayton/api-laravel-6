@@ -36,11 +36,11 @@ class ForgotPasswordController extends Controller
      * @OA\Post(
      *      tags={"Autentication"},
      *      path="/api/password",
-     *      summary="Forgot password",
+     *      summary="Change password",
      *      description="Receive an email to change password",
      *      @OA\Parameter(
-     *          name="email",
-     *          description="Email",
+     *          name="password",
+     *          description="Password",
      *          required=true,
      *          in="query",
      *          @OA\Schema(
@@ -73,7 +73,7 @@ class ForgotPasswordController extends Controller
     /**
      * @OA\Post(
      *      tags={"Autentication"},
-     *      path="/api/forgot",
+     *      path="/api/password/forgot",
      *      summary="Forgot password",
      *      description="Receive an email to change password",
      *      @OA\Parameter(

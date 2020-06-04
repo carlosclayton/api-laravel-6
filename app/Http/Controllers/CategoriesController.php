@@ -44,13 +44,14 @@ class CategoriesController extends Controller
 
     /**
      * @OA\Get(
-     * path="/api/categories",
-     * summary="List of categories",
-     * description="Return a list of categories",
-     * @OA\Response(response="200", description="An json"),
-     * security={
-     * {"apiKey": {}}
-     * }
+     *     tags={"Categories"},
+     *     path="/api/categories",
+     *     summary="List of categories",
+     *     description="Return a list of categories",
+     *     @OA\Response(response="200", description="An json"),
+     *      security={
+     *           {"apiKey": {}}
+     *       }
      * )
      */
     public function index(Request $request)
