@@ -159,6 +159,18 @@ class LoginController extends Controller
         ], 204);
     }
 
+    /**
+     * @OA\Post(
+     *      tags={"Autentication"},
+     *      path="/api/refresh_token",
+     *      summary="Refresh token",
+     *      description="Refresh token",
+     *      @OA\Response(
+     *          response=200,
+     *          description="successful operation"
+     *       )
+     * )
+     */
     public function refreshToken(Request $request)
     {
         $token = \Auth::guard('api')->refresh();
