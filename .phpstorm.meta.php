@@ -5,13 +5,17 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2020-05-21 14:49:05.
+    * Generated on 2020-05-29 23:41:34.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
     */
     override(new \Illuminate\Contracts\Container\Container, map([
         '' => '@',
+        'App\Repositories\CategoryRepository' => \App\Repositories\CategoryRepositoryEloquent::class,
+        'App\Repositories\ClientRepository' => \App\Repositories\ClientRepositoryEloquent::class,
+        'App\Repositories\OrderRepository' => \App\Repositories\OrderRepositoryEloquent::class,
+        'App\Repositories\ProductRepository' => \App\Repositories\ProductRepositoryEloquent::class,
         'App\Repositories\UserRepository' => \App\Repositories\UserRepositoryEloquent::class,
         'Asm89\Stack\CorsService' => \Asm89\Stack\CorsService::class,
         'Dingo\Api\Console\Command\Docs' => \Dingo\Api\Console\Command\Docs::class,
@@ -96,6 +100,7 @@ namespace PHPSTORM_META {
         'command.ide-helper.models' => \Barryvdh\LaravelIdeHelper\Console\ModelsCommand::class,
         'command.job.make' => \Illuminate\Foundation\Console\JobMakeCommand::class,
         'command.key.generate' => \Illuminate\Foundation\Console\KeyGenerateCommand::class,
+        'command.l5-swagger.generate' => \L5Swagger\Console\GenerateDocsCommand::class,
         'command.listener.make' => \Illuminate\Foundation\Console\ListenerMakeCommand::class,
         'command.mail.make' => \Illuminate\Foundation\Console\MailMakeCommand::class,
         'command.make:solution' => \Facade\Ignition\Commands\SolutionMakeCommand::class,
@@ -201,6 +206,10 @@ namespace PHPSTORM_META {
     ]));
     override(\Illuminate\Container\Container::makeWith(0), map([
         '' => '@',
+        'App\Repositories\CategoryRepository' => \App\Repositories\CategoryRepositoryEloquent::class,
+        'App\Repositories\ClientRepository' => \App\Repositories\ClientRepositoryEloquent::class,
+        'App\Repositories\OrderRepository' => \App\Repositories\OrderRepositoryEloquent::class,
+        'App\Repositories\ProductRepository' => \App\Repositories\ProductRepositoryEloquent::class,
         'App\Repositories\UserRepository' => \App\Repositories\UserRepositoryEloquent::class,
         'Asm89\Stack\CorsService' => \Asm89\Stack\CorsService::class,
         'Dingo\Api\Console\Command\Docs' => \Dingo\Api\Console\Command\Docs::class,
@@ -285,6 +294,7 @@ namespace PHPSTORM_META {
         'command.ide-helper.models' => \Barryvdh\LaravelIdeHelper\Console\ModelsCommand::class,
         'command.job.make' => \Illuminate\Foundation\Console\JobMakeCommand::class,
         'command.key.generate' => \Illuminate\Foundation\Console\KeyGenerateCommand::class,
+        'command.l5-swagger.generate' => \L5Swagger\Console\GenerateDocsCommand::class,
         'command.listener.make' => \Illuminate\Foundation\Console\ListenerMakeCommand::class,
         'command.mail.make' => \Illuminate\Foundation\Console\MailMakeCommand::class,
         'command.make:solution' => \Facade\Ignition\Commands\SolutionMakeCommand::class,
@@ -390,6 +400,10 @@ namespace PHPSTORM_META {
     ]));
     override(\Illuminate\Contracts\Container\Container::make(0), map([
         '' => '@',
+        'App\Repositories\CategoryRepository' => \App\Repositories\CategoryRepositoryEloquent::class,
+        'App\Repositories\ClientRepository' => \App\Repositories\ClientRepositoryEloquent::class,
+        'App\Repositories\OrderRepository' => \App\Repositories\OrderRepositoryEloquent::class,
+        'App\Repositories\ProductRepository' => \App\Repositories\ProductRepositoryEloquent::class,
         'App\Repositories\UserRepository' => \App\Repositories\UserRepositoryEloquent::class,
         'Asm89\Stack\CorsService' => \Asm89\Stack\CorsService::class,
         'Dingo\Api\Console\Command\Docs' => \Dingo\Api\Console\Command\Docs::class,
@@ -474,6 +488,7 @@ namespace PHPSTORM_META {
         'command.ide-helper.models' => \Barryvdh\LaravelIdeHelper\Console\ModelsCommand::class,
         'command.job.make' => \Illuminate\Foundation\Console\JobMakeCommand::class,
         'command.key.generate' => \Illuminate\Foundation\Console\KeyGenerateCommand::class,
+        'command.l5-swagger.generate' => \L5Swagger\Console\GenerateDocsCommand::class,
         'command.listener.make' => \Illuminate\Foundation\Console\ListenerMakeCommand::class,
         'command.mail.make' => \Illuminate\Foundation\Console\MailMakeCommand::class,
         'command.make:solution' => \Facade\Ignition\Commands\SolutionMakeCommand::class,
@@ -579,6 +594,10 @@ namespace PHPSTORM_META {
     ]));
     override(\Illuminate\Contracts\Container\Container::makeWith(0), map([
         '' => '@',
+        'App\Repositories\CategoryRepository' => \App\Repositories\CategoryRepositoryEloquent::class,
+        'App\Repositories\ClientRepository' => \App\Repositories\ClientRepositoryEloquent::class,
+        'App\Repositories\OrderRepository' => \App\Repositories\OrderRepositoryEloquent::class,
+        'App\Repositories\ProductRepository' => \App\Repositories\ProductRepositoryEloquent::class,
         'App\Repositories\UserRepository' => \App\Repositories\UserRepositoryEloquent::class,
         'Asm89\Stack\CorsService' => \Asm89\Stack\CorsService::class,
         'Dingo\Api\Console\Command\Docs' => \Dingo\Api\Console\Command\Docs::class,
@@ -663,6 +682,7 @@ namespace PHPSTORM_META {
         'command.ide-helper.models' => \Barryvdh\LaravelIdeHelper\Console\ModelsCommand::class,
         'command.job.make' => \Illuminate\Foundation\Console\JobMakeCommand::class,
         'command.key.generate' => \Illuminate\Foundation\Console\KeyGenerateCommand::class,
+        'command.l5-swagger.generate' => \L5Swagger\Console\GenerateDocsCommand::class,
         'command.listener.make' => \Illuminate\Foundation\Console\ListenerMakeCommand::class,
         'command.mail.make' => \Illuminate\Foundation\Console\MailMakeCommand::class,
         'command.make:solution' => \Facade\Ignition\Commands\SolutionMakeCommand::class,
@@ -768,6 +788,10 @@ namespace PHPSTORM_META {
     ]));
     override(\App::make(0), map([
         '' => '@',
+        'App\Repositories\CategoryRepository' => \App\Repositories\CategoryRepositoryEloquent::class,
+        'App\Repositories\ClientRepository' => \App\Repositories\ClientRepositoryEloquent::class,
+        'App\Repositories\OrderRepository' => \App\Repositories\OrderRepositoryEloquent::class,
+        'App\Repositories\ProductRepository' => \App\Repositories\ProductRepositoryEloquent::class,
         'App\Repositories\UserRepository' => \App\Repositories\UserRepositoryEloquent::class,
         'Asm89\Stack\CorsService' => \Asm89\Stack\CorsService::class,
         'Dingo\Api\Console\Command\Docs' => \Dingo\Api\Console\Command\Docs::class,
@@ -852,6 +876,7 @@ namespace PHPSTORM_META {
         'command.ide-helper.models' => \Barryvdh\LaravelIdeHelper\Console\ModelsCommand::class,
         'command.job.make' => \Illuminate\Foundation\Console\JobMakeCommand::class,
         'command.key.generate' => \Illuminate\Foundation\Console\KeyGenerateCommand::class,
+        'command.l5-swagger.generate' => \L5Swagger\Console\GenerateDocsCommand::class,
         'command.listener.make' => \Illuminate\Foundation\Console\ListenerMakeCommand::class,
         'command.mail.make' => \Illuminate\Foundation\Console\MailMakeCommand::class,
         'command.make:solution' => \Facade\Ignition\Commands\SolutionMakeCommand::class,
@@ -957,6 +982,10 @@ namespace PHPSTORM_META {
     ]));
     override(\App::makeWith(0), map([
         '' => '@',
+        'App\Repositories\CategoryRepository' => \App\Repositories\CategoryRepositoryEloquent::class,
+        'App\Repositories\ClientRepository' => \App\Repositories\ClientRepositoryEloquent::class,
+        'App\Repositories\OrderRepository' => \App\Repositories\OrderRepositoryEloquent::class,
+        'App\Repositories\ProductRepository' => \App\Repositories\ProductRepositoryEloquent::class,
         'App\Repositories\UserRepository' => \App\Repositories\UserRepositoryEloquent::class,
         'Asm89\Stack\CorsService' => \Asm89\Stack\CorsService::class,
         'Dingo\Api\Console\Command\Docs' => \Dingo\Api\Console\Command\Docs::class,
@@ -1041,6 +1070,7 @@ namespace PHPSTORM_META {
         'command.ide-helper.models' => \Barryvdh\LaravelIdeHelper\Console\ModelsCommand::class,
         'command.job.make' => \Illuminate\Foundation\Console\JobMakeCommand::class,
         'command.key.generate' => \Illuminate\Foundation\Console\KeyGenerateCommand::class,
+        'command.l5-swagger.generate' => \L5Swagger\Console\GenerateDocsCommand::class,
         'command.listener.make' => \Illuminate\Foundation\Console\ListenerMakeCommand::class,
         'command.mail.make' => \Illuminate\Foundation\Console\MailMakeCommand::class,
         'command.make:solution' => \Facade\Ignition\Commands\SolutionMakeCommand::class,
@@ -1146,6 +1176,10 @@ namespace PHPSTORM_META {
     ]));
     override(\app(0), map([
         '' => '@',
+        'App\Repositories\CategoryRepository' => \App\Repositories\CategoryRepositoryEloquent::class,
+        'App\Repositories\ClientRepository' => \App\Repositories\ClientRepositoryEloquent::class,
+        'App\Repositories\OrderRepository' => \App\Repositories\OrderRepositoryEloquent::class,
+        'App\Repositories\ProductRepository' => \App\Repositories\ProductRepositoryEloquent::class,
         'App\Repositories\UserRepository' => \App\Repositories\UserRepositoryEloquent::class,
         'Asm89\Stack\CorsService' => \Asm89\Stack\CorsService::class,
         'Dingo\Api\Console\Command\Docs' => \Dingo\Api\Console\Command\Docs::class,
@@ -1230,6 +1264,7 @@ namespace PHPSTORM_META {
         'command.ide-helper.models' => \Barryvdh\LaravelIdeHelper\Console\ModelsCommand::class,
         'command.job.make' => \Illuminate\Foundation\Console\JobMakeCommand::class,
         'command.key.generate' => \Illuminate\Foundation\Console\KeyGenerateCommand::class,
+        'command.l5-swagger.generate' => \L5Swagger\Console\GenerateDocsCommand::class,
         'command.listener.make' => \Illuminate\Foundation\Console\ListenerMakeCommand::class,
         'command.mail.make' => \Illuminate\Foundation\Console\MailMakeCommand::class,
         'command.make:solution' => \Facade\Ignition\Commands\SolutionMakeCommand::class,
@@ -1335,6 +1370,10 @@ namespace PHPSTORM_META {
     ]));
     override(\resolve(0), map([
         '' => '@',
+        'App\Repositories\CategoryRepository' => \App\Repositories\CategoryRepositoryEloquent::class,
+        'App\Repositories\ClientRepository' => \App\Repositories\ClientRepositoryEloquent::class,
+        'App\Repositories\OrderRepository' => \App\Repositories\OrderRepositoryEloquent::class,
+        'App\Repositories\ProductRepository' => \App\Repositories\ProductRepositoryEloquent::class,
         'App\Repositories\UserRepository' => \App\Repositories\UserRepositoryEloquent::class,
         'Asm89\Stack\CorsService' => \Asm89\Stack\CorsService::class,
         'Dingo\Api\Console\Command\Docs' => \Dingo\Api\Console\Command\Docs::class,
@@ -1419,6 +1458,7 @@ namespace PHPSTORM_META {
         'command.ide-helper.models' => \Barryvdh\LaravelIdeHelper\Console\ModelsCommand::class,
         'command.job.make' => \Illuminate\Foundation\Console\JobMakeCommand::class,
         'command.key.generate' => \Illuminate\Foundation\Console\KeyGenerateCommand::class,
+        'command.l5-swagger.generate' => \L5Swagger\Console\GenerateDocsCommand::class,
         'command.listener.make' => \Illuminate\Foundation\Console\ListenerMakeCommand::class,
         'command.mail.make' => \Illuminate\Foundation\Console\MailMakeCommand::class,
         'command.make:solution' => \Facade\Ignition\Commands\SolutionMakeCommand::class,

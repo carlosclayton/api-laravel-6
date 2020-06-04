@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.2",
+        "darkaonline/l5-swagger": "6.0.*",
         "dingo/api": "^2.0.0",
         "doctrine/dbal": "^2.10",
         "fideloper/proxy": "^4.0",
@@ -16,10 +17,10 @@
         "laravel/framework": "^6.2",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^1.2",
+        "league/fractal": "^0.17.0",
         "lucascudo/laravel-pt-br-localization": "^1.1",
         "prettus/l5-repository": "^2.6",
-        "tymon/jwt-auth": "^1.0",
-        "league/fractal": "^0.17.0"
+        "tymon/jwt-auth": "^1.0"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.7",
