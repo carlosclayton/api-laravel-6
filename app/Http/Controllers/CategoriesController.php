@@ -153,41 +153,42 @@ class CategoriesController extends Controller
 
     /**
      * @OA\Put(
-     * path="/api/categories/{id}",
-     * summary="Update a category",
-     * description="Update a category",
-     * operationId="getCategoryById",
-     * @OA\Parameter(
-     * name ="id",
-     * in = "path",
-     * description = "ID of category to return",
-     * required = true,
-     * @OA\Schema(
-     * type="integer"
-     * )
-     * ),
-     * @OA\Parameter(
-     * name="name",
-     * description="Name field",
-     * required=true,
-     * in="query",
-     * @OA\Schema(
-     * type="string"
-     * )*
-     * ),
-     * @OA\Parameter(
-     * name="description",
-     * description="Description",
-     * required=true,
-     * in="query",
-     * @OA\Schema(
-     * type="string"
-     * )
-     * ),
-     * @OA\Response(response="200", description="Store categories"),
-     * security={
-     * {"apiKey": {}}
-     * }
+     *      tags={"Categories"},
+     *      path="/api/categories/{id}",
+     *      summary="Update a category",
+     *      description="Update a category",
+     *      operationId="getCategoryById",
+     *      @OA\Parameter(
+     *          name ="id",
+     *          in = "path",
+     *          description = "ID of category to return",
+     *          required = true,
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="name",
+     *          description="Name field",
+     *          required=true,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="description",
+     *          description="Description",
+     *          required=true,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *     @OA\Response(response="200", description="Update categories"),
+     *      security={
+     *           {"apiKey": {}}
+     *      }
      * )
      */
     public function update(CategoryUpdateRequest $request, $id)
