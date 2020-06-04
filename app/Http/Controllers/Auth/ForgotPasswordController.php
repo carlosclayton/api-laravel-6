@@ -35,7 +35,16 @@ class ForgotPasswordController extends Controller
     /**
      * @OA\Post(
      *      tags={"Autentication"},
-     *      path="/api/password",
+     *      path="/api/password/{user}",
+     *     @OA\Parameter(
+     *          name ="user",
+     *          in = "path",
+     *          description = "ID of category to return",
+     *          required = true,
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
      *      summary="Change password",
      *      description="Receive an email to change password",
      *      @OA\Parameter(
@@ -47,6 +56,16 @@ class ForgotPasswordController extends Controller
      *              type="string"
      *          )
      *      ),
+     *      @OA\Parameter(
+     *          name="password_confirmation",
+     *          description="Password",
+     *          required=true,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *
      *      @OA\Response(
      *          response=200,
      *          description="successful operation"

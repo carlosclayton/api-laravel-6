@@ -13,7 +13,7 @@
         "version": "1.0.0"
     },
     "paths": {
-        "/api/password": {
+        "/api/password/{user}": {
             "post": {
                 "tags": [
                     "Autentication"
@@ -23,7 +23,25 @@
                 "operationId": "App\\Http\\Controllers\\Auth\\ForgotPasswordController::password",
                 "parameters": [
                     {
+                        "name": "user",
+                        "in": "path",
+                        "description": "ID of category to return",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
                         "name": "password",
+                        "in": "query",
+                        "description": "Password",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password_confirmation",
                         "in": "query",
                         "description": "Password",
                         "required": true,
@@ -352,6 +370,26 @@
                 "responses": {
                     "200": {
                         "description": "An json"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": []
+                    }
+                ]
+            }
+        },
+        "/api/categories/restore/{id}": {
+            "put": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Restore a category",
+                "description": "Restore a category",
+                "operationId": "getCategoryById",
+                "responses": {
+                    "200": {
+                        "description": "Store categories"
                     }
                 },
                 "security": [
