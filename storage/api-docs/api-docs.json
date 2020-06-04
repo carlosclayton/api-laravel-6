@@ -340,6 +340,26 @@
                     }
                 ]
             }
+        },
+        "/api/categories/trashed": {
+            "get": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "List of trashed categories",
+                "description": "Return a list of trashed categories",
+                "operationId": "App\\Http\\Controllers\\CategoriesController::trashed",
+                "responses": {
+                    "200": {
+                        "description": "An json"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": []
+                    }
+                ]
+            }
         }
     },
     "components": {
