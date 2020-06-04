@@ -265,6 +265,9 @@
                 ]
             },
             "put": {
+                "tags": [
+                    "Categories"
+                ],
                 "summary": "Update a category",
                 "description": "Update a category",
                 "operationId": "getCategoryById",
@@ -299,7 +302,36 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Store categories"
+                        "description": "Update categories"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Delete a category",
+                "description": "Delete a category",
+                "operationId": "getCategoryById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of category to return",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An json"
                     }
                 },
                 "security": [

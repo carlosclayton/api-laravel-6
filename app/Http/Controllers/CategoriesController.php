@@ -208,11 +208,26 @@ class CategoriesController extends Controller
 
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     *
-     * @return \Illuminate\Http\Response
+     * @OA\Delete(
+     *     tags={"Categories"},
+     *     path="/api/categories/{id}",
+     *     operationId="getCategoryById",
+     *     @OA\Parameter(
+     *          name ="id",
+     *          in = "path",
+     *          description = "ID of category to return",
+     *          required = true,
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *     ),
+     *     summary="Delete a category",
+     *     description="Delete a category",
+     *     @OA\Response(response="200", description="An json"),
+     *     security={
+     *           {"apiKey": {}}
+     *     }
+     * )
      */
     public function destroy($id)
     {
@@ -221,7 +236,18 @@ class CategoriesController extends Controller
             'message' => 'Category deleted.'
         ]);
     }
-
+    /**
+     * @OA\Get(
+     *     tags={"Categories"},
+     *     path="/api/categories/trashed",
+     *     summary="List of trashed categories",
+     *     description="Return a list of trashed categories",
+     *     @OA\Response(response="200", description="An json"),
+     *      security={
+     *           {"apiKey": {}}
+     *       }
+     * )
+     */
     public function trashed()
     {
         $this->repository->pushCriteria(new OnlyTrashedCriteria());
