@@ -65,31 +65,32 @@ class CategoriesController extends Controller
 
     /**
      * @OA\Post(
-     * path="/api/categories",
-     * summary="Store a category",
-     * description="Return message",
-     * @OA\Parameter(
-     * name="name",
-     * description="Name field",
-     * required=true,
-     * in="query",
-     * @OA\Schema(
-     * type="string"
-     * )
-     * ),
-     * @OA\Parameter(
-     * name="description",
-     * description="Description",
-     * required=true,
-     * in="query",
-     * @OA\Schema(
-     * type="string"
-     * )
-     * ),
-     * @OA\Response(response="200", description="Store categories"),
-     * security={
-     * {"apiKey": {}}
-     * }
+     *      tags={"Categories"},
+     *      path="/api/categories",
+     *      summary="Store a category",
+     *      description="Return message",
+     *      @OA\Parameter(
+     *          name="name",
+     *          description="Name field",
+     *          required=true,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="description",
+     *          description="Description",
+     *          required=true,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *     @OA\Response(response="200", description="Store categories"),
+     *      security={
+     *           {"apiKey": {}}
+     *      }
      * )
      */
     public function store(CategoryCreateRequest $request)
