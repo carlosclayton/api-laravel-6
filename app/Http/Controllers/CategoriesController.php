@@ -257,6 +257,19 @@ class CategoriesController extends Controller
         ]);
     }
 
+    /**
+     * @OA\Put(
+     *      tags={"Categories"},
+     *      path="/api/categories/restore/{id}",
+     *      summary="Restore a category",
+     *      description="Restore a category",
+     *      operationId="getCategoryById",
+     *     @OA\Response(response="200", description="Store categories"),
+     *      security={
+     *           {"apiKey": {}}
+     *      }
+     * )
+     */
     public function restore($id)
     {
         try {
