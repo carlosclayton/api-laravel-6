@@ -109,24 +109,25 @@ class CategoriesController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/api/categories/{id}",
-     *      operationId="getCategoryById",
-     *      @OA\Parameter(
-     *              name ="id",
-     *              in = "path",
-     *              description = "ID of category to return",
-     *              required = true,
-     *              @OA\Schema(
-     *                  type="integer"
-     *              )
-     *      ),
-     *      summary="Show a category",
-     *      description="Return a category",
-     *      @OA\Response(response="200", description="An json"),
-     *      security={
-     *          {"apiKey": {}}
-     *      }
-     *  )
+     *     tags={"Categories"},
+     *     path="/api/categories/{id}",
+     *     operationId="getCategoryById",
+     *     @OA\Parameter(
+     *          name ="id",
+     *          in = "path",
+     *          description = "ID of category to return",
+     *          required = true,
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *     ),
+     *     summary="Show a category",
+     *     description="Return a category",
+     *     @OA\Response(response="200", description="An json"),
+     *     security={
+     *           {"apiKey": {}}
+     *     }
+     * )
      */
     public function show($id)
     {
